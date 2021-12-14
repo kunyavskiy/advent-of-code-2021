@@ -8,8 +8,9 @@ fun main() {
 
 
 private fun easy(data: List<Int>) = (data.minOrNull()!!..data.maxOrNull()!!).minOf { x ->
-   data.sumOf { (it - x).absoluteValue }
+    data.sumOf { (it - x).absoluteValue }
 }
+
 private fun hard(data: List<Int>) = (data.minOrNull()!!..data.maxOrNull()!!).minOf { x ->
-    data.sumOf { (it - x).absoluteValue.let { it * (it + 1)/ 2 } }
+    data.sumOf { (it - x).absoluteValue.let { it * (it + 1) / 2 } }
 }

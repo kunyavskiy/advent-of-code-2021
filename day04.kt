@@ -13,7 +13,8 @@ private fun winTime(order: List<Int>, board: List<List<Int>>) = order.indices.fi
     board.any { r -> r.all { order.indexOf(it) <= index } } ||
             board[0].indices.any { c -> board.all { order.indexOf(it[c]) <= index } }
 }
-private fun score(order: List<Int>, board: List<List<Int>>, winTime:Int) =
+
+private fun score(order: List<Int>, board: List<List<Int>>, winTime: Int) =
     order[winTime] * board.sumOf { row -> row.filter { order.indexOf(it) > winTime }.sum() }
 
 private fun easy(order: List<Int>, boards: List<List<List<Int>>>) = boards
@@ -21,7 +22,7 @@ private fun easy(order: List<Int>, boards: List<List<List<Int>>>) = boards
     .minByOrNull { it.second }!!
     .let { score(order, it.first, it.second) }
 
-private fun hard(order: List<Int>, boards: List<List<List<Int>>>) : Int =  boards
+private fun hard(order: List<Int>, boards: List<List<List<Int>>>): Int = boards
     .map { board -> board to winTime(order, board) }
     .maxByOrNull { it.second }!!
     .let { score(order, it.first, it.second) }

@@ -1,5 +1,6 @@
 private val Char.letterCode get() = code - 'A'.code
-private data class Rule(val a:Int, val b:Int, val to:Int)
+
+private data class Rule(val a: Int, val b: Int, val to: Int)
 
 fun main() {
     val data = readAllLines()
@@ -14,12 +15,12 @@ fun main() {
 private fun <T> List<Pair<T, Long>>.mergeSame() = groupBy { it.first }
     .mapValues { (_, v) -> v.sumOf { it.second } }
 
-private fun process(rules: List<Rule>, a: Int, b:Int) =
+private fun process(rules: List<Rule>, a: Int, b: Int) =
     rules.singleOrNull { it.a == a && it.b == b }?.let {
         listOf(a to it.to, it.to to b)
     } ?: listOf(a to b)
 
-private fun solve(start: List<Int>, rules:List<Rule>, count: Int) =
+private fun solve(start: List<Int>, rules: List<Rule>, count: Int) =
     generateSequence((listOf(-1) + start).zipWithNext().map { it to 1L }.mergeSame()) { counts ->
         counts.flatMap { (key, value) ->
             process(rules, key.first, key.second).map { it to value }
@@ -31,5 +32,5 @@ private fun solve(start: List<Int>, rules:List<Rule>, count: Int) =
         .sorted()
         .let { it.last() - it[0] }
 
-private fun easy(start: List<Int>, rules:List<Rule>) = solve(start, rules, 10)
-private fun hard(start: List<Int>, rules:List<Rule>) = solve(start, rules, 40)
+private fun easy(start: List<Int>, rules: List<Rule>) = solve(start, rules, 10)
+private fun hard(start: List<Int>, rules: List<Rule>) = solve(start, rules, 40)

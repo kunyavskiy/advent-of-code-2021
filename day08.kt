@@ -10,7 +10,7 @@ private val D = listOf(
     "abcefg", "cf", "acdeg", "acdfg", "bcdf", "abdfg", "abdefg", "acf", "abcdefg", "abcdfg"
 )
 
-private fun genPermutations(length:Int) : Sequence<List<Int>> = when (length) {
+private fun genPermutations(length: Int): Sequence<List<Int>> = when (length) {
     1 -> sequenceOf(listOf(0))
     else -> genPermutations(length - 1).flatMap { old ->
         (0 until length).asSequence().map { old.take(it) + listOf(length - 1) + old.drop(it) }
@@ -24,10 +24,10 @@ private fun genAll() = genPermutations(7).map { s ->
 private fun String.remap(code: Map<Char, Char>) = map { code[it]!! }.sortedBy { it.code }.joinToString("")
 
 private fun decode(vals: List<String>) = genAll().single { code ->
-    vals.all { it.remap(code) in D  }
+    vals.all { it.remap(code) in D }
 }
 
-private fun hard(data: List<List<String>>) : Int =
+private fun hard(data: List<List<String>>): Int =
     data.sumOf { line ->
         decode(line.take(10)).let { code ->
             line.takeLast(4).joinToString("") {

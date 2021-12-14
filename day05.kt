@@ -1,9 +1,10 @@
 import kotlin.math.*
 
-private data class Line(val x1:Int, val y1:Int, val x2:Int, val y2: Int) {
-    fun on(x:Int, y:Int) =
+private data class Line(val x1: Int, val y1: Int, val x2: Int, val y2: Int) {
+    fun on(x: Int, y: Int) =
         (x - x1) * (y2 - y1) - (y - y1) * (x2 - x1) == 0 &&
                 x in (minX..maxX) && y in (minY..maxY)
+
     val minX get() = minOf(x1, x2)
     val minY get() = minOf(y1, y2)
     val maxX get() = maxOf(x1, x2)
@@ -20,8 +21,8 @@ fun main() {
 }
 
 private fun countAnswer(lines: List<Line>) =
-    (lines.minOf { it.minX } .. lines.maxOf { it.maxX }).sumOf { x ->
-        (lines.minOf { it.minY } .. lines.maxOf { it.maxY }).count { y ->
+    (lines.minOf { it.minX }..lines.maxOf { it.maxX }).sumOf { x ->
+        (lines.minOf { it.minY }..lines.maxOf { it.maxY }).count { y ->
             lines.count { it.on(x, y) } > 1
         }
     }

@@ -24,11 +24,11 @@ private fun easy(data: List<Instruction>) = data.fold(EasyPosition(0, 0)) { acc,
     }
 }.let { it.h * it.v }
 
-private data class HardPosition(val h: Long, val v: Long, val a:Long)
+private data class HardPosition(val h: Long, val v: Long, val a: Long)
 
-private fun hard(data: List<Instruction>) =  data.fold(HardPosition(0, 0, 0)) { acc, (op, arg) ->
+private fun hard(data: List<Instruction>) = data.fold(HardPosition(0, 0, 0)) { acc, (op, arg) ->
     when (op) {
-        OP.FORWARD -> acc.copy(h = acc.h + arg, v = acc.v + arg * acc.a,)
+        OP.FORWARD -> acc.copy(h = acc.h + arg, v = acc.v + arg * acc.a)
         OP.UP -> acc.copy(a = acc.a - arg)
         OP.DOWN -> acc.copy(a = acc.a + arg)
     }

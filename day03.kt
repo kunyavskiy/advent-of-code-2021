@@ -4,8 +4,10 @@ fun main() {
     println(hard(data))
 }
 
-private fun List<String>.common(index:Int) = if (count { it[index] == '0' } > count { it[index] == '1' }) '0' else '1'
-private fun List<String>.uncommon(index:Int) = if (count { it[index] == '0' } <= count { it[index] == '1' }) '0' else '1'
+private fun List<String>.common(index: Int) =
+    if (count { it[index] == '0' } > count { it[index] == '1' }) '0' else '1'
+private fun List<String>.uncommon(index: Int) =
+    if (count { it[index] == '0' } <= count { it[index] == '1' }) '0' else '1'
 
 private fun easy(data: List<String>) = data[0].indices
     .map(data::common)

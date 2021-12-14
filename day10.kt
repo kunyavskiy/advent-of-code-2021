@@ -8,7 +8,7 @@ private val opens = "([{<"
 private val closes = ")]}>"
 private val scores = listOf(3, 57, 1197, 25137)
 
-private fun score(s: String) : Pair<List<Char>?, Int> = s.fold(mutableListOf('?')) { x, c ->
+private fun score(s: String): Pair<List<Char>?, Int> = s.fold(mutableListOf('?')) { x, c ->
     x.apply {
         when (c) {
             in opens -> add(closes[opens.indexOf(c)])

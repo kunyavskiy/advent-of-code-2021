@@ -7,7 +7,7 @@ fun main() {
 }
 
 private val cache = mutableMapOf<Int, BigInteger>()
-private fun dp(days:Int) : BigInteger = cache.getOrPut(days) {
+private fun dp(days: Int): BigInteger = cache.getOrPut(days) {
     when {
         days <= 0 -> BigInteger.ONE
         else -> dp(days - 7) + dp(days - 9)
