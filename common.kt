@@ -15,3 +15,7 @@ fun <T> Sequence<T>.takeUntil(predicate: (T) -> Boolean) = sequence {
         if (predicate(i)) break
     }
 }
+
+fun <T> List<T>.replace(index: Int, value: T) = mapIndexed { i, v ->
+    if (i != index) v else value
+}

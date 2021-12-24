@@ -8,10 +8,6 @@ private val Int.needId get() = when (this) {
     else -> TODO()
 }
 
-private fun <T> List<T>.replace(index: Int, value: T) = mapIndexed { i, v ->
-    if (i != index) v else value
-}
-
 private data class Day23State(val a:List<List<Int?>>, val c:List<Int?>) {
     fun final() = c.all { it == null } &&
             a.indices.all { index -> a[index].all{ it != null && it.needId == index } }
